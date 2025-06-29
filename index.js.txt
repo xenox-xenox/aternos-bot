@@ -1,0 +1,19 @@
+const express = require('express');
+const fetch = require('node-fetch');
+const app = express();
+
+app.get('/', (req, res) => {
+  res.send('✅ Aternos Bot is Running!');
+});
+
+// Ping Aternos server every 5 minutes to keep it online
+setInterval(() => {
+  console.log("Pinging Aternos...");
+  fetch('https://aternos.org/go/')  // Yeh URL sirf ping ke liye hai
+    .then(res => console.log("Pinged Successfully:", res.status))
+    .catch(err => console.log("Ping Error:", err));
+}, 5 * 60 * 1000); // Every 5 minutes
+
+app.listen(3000, () => {
+  console.log('Bot is running on port 3000');
+});
